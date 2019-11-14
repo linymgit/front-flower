@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页标题......</title>
+    <link rel="stylesheet" type="text/css" href="css/reset.css"/>
+    <style>
+        .nav {
+            background-color: black;
+            opacity: 0.6;
+            height: 7.5vh;
+            position: fixed;
+            top: 0;
+            width: 100vw
+        }
+
+        .nav-line-l, .nav-line-r {
+            color: white;
+            line-height: 7.5vh;
+            cursor: pointer;
+        }
+
+        .nav-line-l {
+            float: left;
+            margin-left: 10vw
+        }
+
+        .nav-line-r {
+            float: right;
+            margin-right: 10vw
+        }
+
+        .carousel-img{
+            max-height: 400px;
+            max-width: 100vw;
+            min-width: 100vw;
+            display: none;
+        }
+        .circle {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: white;
+            margin: 3px;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .circle-wrap{
+            position: relative;
+            bottom:30px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<!-- 导航条 -->
+<div class="nav">
+    <div class="nav-line-l">logo</div>
+    <div class="nav-line-r">
+        <span><a href=" ">Home</a></span>
+        <span><a href="http://www.baidu.com">Products</a></span>
+        <span><a href="http://www.baidu.com">Company</a></span>
+        <span><a href="http://www.baidu.com">Solutions</a></span>
+    </div>
+</div>
+<div>
+    <img src="https://www.wulihub.com.cn/go/WdzRoJ/images/index/u0_state2.jpg" class="carousel-img"/>
+    <img src="https://www.wulihub.com.cn/go/WdzRoJ/images/index/u0_state1.jpg" class="carousel-img"/>
+    <img src="https://www.wulihub.com.cn/go/WdzRoJ/images/index/u0_state0.jpg" class="carousel-img"/>
+    <div class="circle-wrap"><div class="circle"></div><div class="circle"></div><div class="circle"></div></div>
+</div>
+<div>hhh</div>
+</body>
+<script>
+    let showIndex = 0
+    let imgs = document.getElementsByClassName("carousel-img");
+    //轮播图 3秒
+    self.setInterval( function(){
+        cc[showIndex].style.opacity = "1"
+        showIndex++;
+        if (showIndex >= imgs.length) {
+            showIndex = 0;
+        }
+        for(let i=0;i<imgs.length;i++){
+            if (showIndex === i) {
+                imgs[i].style.display = "block"
+            }else{
+                imgs[i].style.display = "none"
+            }
+        }
+        cc[showIndex].style.opacity = "0.5"
+
+    },3000)
+    //页面加载
+    window.onload = function(){
+        document.getElementsByClassName("carousel-img")[0].style.display="block"
+    }
+    //选择轮播图
+    let cc = document.getElementsByClassName("circle");
+    for(let j=0;j<cc.length;j++){
+        cc[j].onclick = function () {
+            cc[showIndex].style.opacity = "1"
+            for(let i=0;i<imgs.length;i++){
+                if (j === i) {
+                    imgs[i].style.display = "block"
+                }else{
+                    imgs[i].style.display = "none"
+                }
+            }
+            showIndex = j
+            cc[showIndex].style.opacity = "0.5"
+        };
+    }
+</script>
+</html>
